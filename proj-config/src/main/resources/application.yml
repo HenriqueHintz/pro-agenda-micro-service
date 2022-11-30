@@ -9,6 +9,3 @@ spring:
       server:
         native:
           search-locations: C:/Users/ricop/Documents/proj-agenda-micro-services/proj-config/arquivos-configuracao
-          
-
-

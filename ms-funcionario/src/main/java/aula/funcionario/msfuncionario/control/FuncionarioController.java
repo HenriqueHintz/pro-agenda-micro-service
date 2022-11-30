@@ -16,31 +16,35 @@ public class FuncionarioController {
     private FuncionarioRepository repository;
 
     @GetMapping("/")
-    public List<FuncionarioDTO> listarTodosFuncionarios(){
+    public List<FuncionarioDTO> listarTodosFuncionarios() {
         List<Funcionario> funcionarioList = repository.findAll();
         List<FuncionarioDTO> dtos = FuncionarioDTO.converteListaDTO(funcionarioList);
         return dtos;
     }
+
     @GetMapping("/{id}")
-    public FuncionarioDTO consutarPorId(@PathVariable(name = "id")Long id){
+    public FuncionarioDTO consutarPorId(@PathVariable(name = "id") Long id) {
         Funcionario funcionario = repository.getReferenceById(id);
         return new FuncionarioDTO(funcionario);
     }
+
     @PostMapping("/")
-    public void inserirFuncionario(@RequestBody FuncionarioDTO dto){
+    public void inserirFuncionario(@RequestBody FuncionarioDTO dto) {
         Funcionario funcionario = dto.converteFuncionario();
         repository.save(funcionario);
     }
+
     @PutMapping("/{id}")
-    public FuncionarioDTO alterarFuncionario(@PathVariable(name = "id")Long id, @RequestBody FuncionarioDTO dto){
+    public FuncionarioDTO alterarFuncionario(@PathVariable(name = "id") Long id, @RequestBody FuncionarioDTO dto) {
         Funcionario funcionarioBase = repository.getReferenceById(id);
         dto.setId(funcionarioBase.getId());
         Funcionario funcionarioAlterado = dto.converteFuncionario();
         repository.save(funcionarioAlterado);
         return dto;
     }
+
     @DeleteMapping("/{id}")
-    public FuncionarioDTO deletarFuncionario(@PathVariable(name = "id")Long id){
+    public FuncionarioDTO deletarFuncionario(@PathVariable(name = "id") Long id) {
         Funcionario funcionario = repository.getReferenceById(id);
         FuncionarioDTO dto = new FuncionarioDTO(funcionario);
         repository.delete(funcionario);

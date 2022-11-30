@@ -1,6 +1,10 @@
 package aula.agenda.msagenda.repository;
 
-public interface AgendaRepository {
-    
-}
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import aula.agenda.msagenda.model.Agenda;
 
+@Repository
+public interface AgendaRepository extends JpaRepository<Agenda, Long> {
+
+}
